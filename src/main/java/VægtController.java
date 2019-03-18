@@ -5,7 +5,7 @@ public class VægtController {
     private Socket sock;
 
     public VægtController() throws Exception {
-    sock = new Socket("localhost", 8000);
+        sock = new Socket("localhost", 8000);
         System.out.println("Forbinder til vægt...");
     }
 
