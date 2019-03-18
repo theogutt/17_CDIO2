@@ -13,7 +13,7 @@ public class VægtController {
         InputStream is = sock.getInputStream();
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 
-        String command = "S crlf";
+        String command = commandS();
         pw.println(command);
         System.out.println(command);
         pw.flush();
