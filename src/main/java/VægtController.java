@@ -2,16 +2,18 @@ import java.io.*;
 import java.net.Socket;
 
 public class VægtController {
+    private Socket sock;
+
     public VægtController() throws Exception {
-    }
-    public void forbind(String command) throws Exception {
-        Socket sock = new Socket("localhost", 8000);
+    sock = new Socket("localhost", 8000);
         System.out.println("Forbinder til vægt...");
+    }
+
+    public void metoder(String command) throws IOException {
         OutputStream sos = sock.getOutputStream();
         PrintWriter pw = new PrintWriter(sos);
         InputStream is = sock.getInputStream();
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-
         pw.println(command);
         System.out.println(command);
         pw.flush();
