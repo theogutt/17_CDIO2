@@ -3,9 +3,8 @@ import java.net.Socket;
 
 public class VægtController {
     public VægtController() throws Exception {
-        forbind();
     }
-    public void forbind() throws Exception {
+    public void forbind(String command) throws Exception {
         Socket sock = new Socket("localhost", 8000);
         System.out.println("Forbinder til vægt...");
         OutputStream sos = sock.getOutputStream();
@@ -13,7 +12,6 @@ public class VægtController {
         InputStream is = sock.getInputStream();
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 
-        String command = commandS();
         pw.println(command);
         System.out.println(command);
         pw.flush();
