@@ -8,12 +8,16 @@ public class VægtController {
     public void forbind() throws Exception {
         Socket sock = new Socket("localhost", 8000);
         System.out.println("Forbinder til vægt...");
+        OutputStream sos = sock.getOutputStream();
+        PrintWriter pw = new PrintWriter(sos);
         InputStream is = sock.getInputStream();
-        modtag(is);
-        sock.close();
-        System.out.println("Forbindelsen er afsluttet");
-    }
-    public void modtag(InputStream is) throws Exception {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 
+        String command = "S crlf";
+        pw.println(command);
+        System.out.println(command);
+        pw.flush();
+        String in = reader.readLine();
+        System.out.println(in);
     }
 }

@@ -3,8 +3,7 @@ public class TUI {
     public TUI() throws Exception {
         v = new VægtController();
     }
+    public void et(){
 
-    public void run() throws Exception {
-        v.forbind();
     }
 }
