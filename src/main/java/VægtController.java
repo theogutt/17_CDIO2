@@ -45,6 +45,6 @@ public class VægtController {
     }
 
     public String commandRM20(String output, String output2){
-        return "RM20 8" + "\"" + " " + output + "" + " \"\"" + " \"&" + output2 + " crlf";
+        return "RM20 8" + "\"" + " " + output + "" + " \"\"" + " \"&OK" + "crlf";
     }
 }
