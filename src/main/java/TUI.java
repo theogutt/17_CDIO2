@@ -20,7 +20,7 @@ public class TUI {
         else if(valg==3){v.metoder(v.commandD(output()));}
         else if(valg==4){v.metoder(v.commandDW());}
         else if(valg==5){v.metoder(v.commandP111(output()));}
-        else if(valg==6){v.metoder(v.commandRM20(output()));}
+        else if(valg==6){v.metoder(v.commandRM20());}
 
     }
     public String output(){
@@ -41,13 +41,16 @@ public class TUI {
         //trin 5
         v.metoder(v.commandP111(output()));
         //trin 6 - operatøren kvitterer for at navnet er korrekt
+        v.metoder(v.commandRM20());
         //trin 7
         v.metoder(v.commandT());
         //trin 8 - operatøren kvitterer
+        v.metoder(v.commandRM20());
         //trin 9 - vægten er blevet tareret
         //trin 10
         v.metoder(v.commandD("Placer tara"));
         //trin 11 - operatøren kvitterer
+        v.metoder(v.commandRM20());
         //trin 12
         v.metoder(v.commandS());
         //trin 13
@@ -55,6 +58,7 @@ public class TUI {
         //trin 14
         v.metoder(v.commandD("Placer netto på vægten"));
         //trin 15 - operatøren kvitterer
+        v.metoder(v.commandRM20());
         //trin 16
         v.metoder(v.commandS());
         //trin 17
@@ -62,11 +66,13 @@ public class TUI {
         //trin 18
         v.metoder(v.commandD("Fjern brutto fra vægten"));
         //trin 19 - operatøren kvitterer
+        v.metoder(v.commandRM20());
         //trin 20
         v.metoder(v.commandS());
         //trin 21
         v.metoder(v.commandD("OK"));
         //trin 22 - operatøren kvitterer
+        v.metoder(v.commandRM20());
         //trin 23
         v.metoder(v.commandT());
     }
