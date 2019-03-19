@@ -44,7 +44,7 @@ public class VægtController {
             return "FEJL, for langt output";
     }
 
-    public String commandRM20(){
-        return "RM20 8" + "\"" + "Godkend + " + " \"\"" + " \"&OK " + "crlf";
+    public String commandRM20(String output, String output2){
+        return "RM20 8" + "\"" + " " + output + "" + " \"\"" + " \"&" + output2 + " crlf";
     }
 }
