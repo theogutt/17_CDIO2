@@ -3,22 +3,26 @@ import java.net.Socket;
 
 public class VægtController {
     private Socket sock;
+    private PrintWriter out;
+    private BufferedReader in;
 
     public VægtController() throws Exception {
-        sock = new Socket("localhost", 8000);
+        sock = new Socket("127.0.0.1", 8000);
         System.out.println("Forbinder til vægt...");
+        out = new PrintWriter(sock.getOutputStream(), true);
+        in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
     }
 
     public void metoder(String command) throws IOException {
-        OutputStream sos = sock.getOutputStream();
-        PrintWriter pw = new PrintWriter(sos);
-        InputStream is = sock.getInputStream();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        pw.println(command);
+        out.println(command);
         System.out.println(command);
-        pw.flush();
-        String in = reader.readLine();
-        System.out.println(in);
+
+        //out.flush();
+
+        String inputFromWeight = in.readLine();
+        System.out.println(inputFromWeight);
+
+        System.out.println();
     }
 
     // Viser vægt i kg
@@ -50,7 +54,7 @@ public class VægtController {
     }
 
     // Skriver "output" og "output2" i to displays og venter på inputs
-    public String commandRM20(String output, String output2){
-        return "RM20 8" + "\"" + " " + output + "" + " \"\"" + " \"&OK" + "crlf";
+    public String commandRM20(String output1, String output2){
+        return "RM20 8 \"" + output1 + "\" \"" + output2 + "\" \"&3\"" + " crlf";
     }
 }
