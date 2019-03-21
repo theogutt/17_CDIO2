@@ -3,48 +3,65 @@ import java.net.Socket;
 
 public class VægtController {
     private Socket sock;
+    private PrintWriter out;
+    private BufferedReader in;
 
     public VægtController() throws Exception {
-        sock = new Socket("localhost", 8000);
+        sock = new Socket("127.0.0.1", 8000);
         System.out.println("Forbinder til vægt...");
+        //out = new PrintWriter(sock.getOutputStream(), true);
+        //in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
     }
 
     public void metoder(String command) throws IOException {
-        OutputStream sos = sock.getOutputStream();
-        PrintWriter pw = new PrintWriter(sos);
-        InputStream is = sock.getInputStream();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        pw.println(command);
+        out = new PrintWriter(sock.getOutputStream(), true);
+        in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+
+        out.println(command);
         System.out.println(command);
-        pw.flush();
-        String in = reader.readLine();
-        System.out.println(in);
+
+        //out.flush();
+
+        System.out.println(in.readLine());
+
+        System.out.println();
     }
 
-    public String commandS(){
-        return "S crlf";
+    // Viser vægt i kg
+    public void commandS() throws IOException {
+        metoder("S crlf");
     }
 
-    public String commandT(){
-        return "T crlf";
+    // Tarerer vægten
+    public void commandT() throws IOException {
+        metoder("T crlf");
     }
 
-    public String commandD(String output){
-        return "D " + "\"" + output + "\"" + " crlf";
+    // Skriver "output" i displayet
+    public void commandD(String output) throws IOException {
+        metoder("D " + "\"" + output + "\"" + " crlf");
     }
 
-    public String commandDW(){
-        return "DW crlf";
+    // Viser vægten igen (bruges efter der er skrevet et output i displayet)
+    public void commandDW() throws IOException {
+        metoder("DW crlf");
     }
 
-    public String commandP111(String output){
+    // Skriver "output" i et andet display
+    public void commandP111(String output) throws IOException {
         if (output.length() <= 30)
-            return "P111 " + "\"" + output + "\"" + " crlf";
+            metoder("P111 " + "\"" + output + "\"" + " crlf");
         else
-            return "FEJL, for langt output";
+            System.out.println("FEJL, for langt output");
     }
 
-    public String commandRM20(String output1, String output2){
-        return "RM20 8 \"" + output1 + "\"\"" + output2 + "\" \"&3\"" + "crlf";
+    // Skriver "output" og "output2" i to displays og venter på inputs
+    public String commandRM20(String output1, String output2) throws IOException {
+        metoder("RM20 8 \"" + output1 + "\" \"" + output2 + "\" \"&3\"" + " crlf");
+
+        String input = in.readLine();
+        System.out.println(input);
+
+        return input;
     }
 }
