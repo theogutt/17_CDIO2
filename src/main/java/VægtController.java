@@ -9,11 +9,14 @@ public class VægtController {
     public VægtController() throws Exception {
         sock = new Socket("127.0.0.1", 8000);
         System.out.println("Forbinder til vægt...");
-        out = new PrintWriter(sock.getOutputStream(), true);
-        in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+        //out = new PrintWriter(sock.getOutputStream(), true);
+        //in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
     }
 
     public void metoder(String command) throws IOException {
+        out = new PrintWriter(sock.getOutputStream(), true);
+        in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+
         out.println(command);
         System.out.println(command);
 

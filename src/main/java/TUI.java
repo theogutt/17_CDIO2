@@ -37,15 +37,22 @@ public class TUI {
     */
 
     public void afvejningsProcedure() throws IOException {
+        String userInput;
         // Trin 1: Vægten beder om, at der indtastes operatørnummer
         // Trin 2: Operatøren indtaster sit brugernummer (område 11-99)
-        v.commandRM20("INDTAST OPERATØRNUMMER", "11-99");
+        do {
+            do {
+                userInput = v.commandRM20("INDTAST OPERATØRNUMMER", "11-99");
+            } while (!inputEquals(userInput, 12));
 
-        // Trin 3 & 4: Operatørens navn findes i databasen og vises på vægten
-        v.commandRM20(bruger.getNavn(), "Er dette dit navn?");
+            // Trin 3 & 4: Operatørens navn findes i databasen og vises på vægten
+            userInput = v.commandRM20(bruger.getNavn(), "Er dette dit navn? y/n");
+        } while(!inputEquals(userInput, "Y"));
 
         // Trin 5 & 6: Vægten beder om, at der indtastes batch nummer (område 1000-9999)
-        v.commandRM20("INDTAST BATCH-NUMMER", "1000-9999");
+        do {
+            userInput = v.commandRM20("INDTAST BATCH-NUMMER", "1000-9999");
+        } while (!inputEquals(userInput, 1234));
 
         // Trin 7 & 8: Operatøren instrueres om, at vægten skal være ubelastet
         // Trin 9: Vægten tareres
@@ -81,5 +88,13 @@ public class TUI {
 
         // Trin 23: Vægten tareres
         v.commandT();
+    }
+
+    private boolean inputEquals(String input, String match){
+        return input.equalsIgnoreCase("RM20 A \"" + match +"\"");
+    }
+
+    private boolean inputEquals(String input, int match){
+        return input.equalsIgnoreCase("RM20 A \"" + match +"\"");
     }
 }
