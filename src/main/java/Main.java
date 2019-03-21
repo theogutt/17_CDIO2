@@ -4,8 +4,6 @@ public class Main {
         Batch batch1 = new Batch(1234,"Salt");
 
         TUI tui = new TUI();
-        while(true) {
-            tui.commandMenu();
-        }
+        tui.afvejningsProcedure();
     }
 }
