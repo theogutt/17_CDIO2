@@ -19,42 +19,46 @@ public class VægtController {
 
         //out.flush();
 
-        String inputFromWeight = in.readLine();
-        System.out.println(inputFromWeight);
+        System.out.println(in.readLine());
 
         System.out.println();
     }
 
     // Viser vægt i kg
-    public String commandS(){
-        return "S crlf";
+    public void commandS() throws IOException {
+        metoder("S crlf");
     }
 
     // Tarerer vægten
-    public String commandT(){
-        return "T crlf";
+    public void commandT() throws IOException {
+        metoder("T crlf");
     }
 
     // Skriver "output" i displayet
-    public String commandD(String output){
-        return "D " + "\"" + output + "\"" + " crlf";
+    public void commandD(String output) throws IOException {
+        metoder("D " + "\"" + output + "\"" + " crlf");
     }
 
     // Viser vægten igen (bruges efter der er skrevet et output i displayet)
-    public String commandDW(){
-        return "DW crlf";
+    public void commandDW() throws IOException {
+        metoder("DW crlf");
     }
 
     // Skriver "output" i et andet display
-    public String commandP111(String output){
+    public void commandP111(String output) throws IOException {
         if (output.length() <= 30)
-            return "P111 " + "\"" + output + "\"" + " crlf";
+            metoder("P111 " + "\"" + output + "\"" + " crlf");
         else
-            return "FEJL, for langt output";
+            System.out.println("FEJL, for langt output");
     }
 
     // Skriver "output" og "output2" i to displays og venter på inputs
-    public String commandRM20(String output1, String output2){
-        return "RM20 8 \"" + output1 + "\" \"" + output2 + "\" \"&3\"" + " crlf";
+    public String commandRM20(String output1, String output2) throws IOException {
+        metoder("RM20 8 \"" + output1 + "\" \"" + output2 + "\" \"&3\"" + " crlf");
+
+        String input = in.readLine();
+        System.out.println(input);
+
+        return input;
     }
 }
