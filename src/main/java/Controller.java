@@ -1,16 +1,15 @@
 import java.io.IOException;
-import java.util.Scanner;
 
-public class TUI {
-    private VægtController v;
-    private Bruger bruger;
+public class Controller {
+    private WeightConnector v;
+    private User user;
     private Batch batch;
 
 
-    public TUI() throws Exception {
-        bruger = new Bruger(12, "Anders And");
+    public Controller() throws Exception {
+        user = new User(12, "Anders And");
         batch = new Batch(1234, "Salt");
-        v = new VægtController();
+        v = new WeightConnector();
     }
 
     /*
@@ -19,12 +18,12 @@ public class TUI {
         System.out.println("\nMenu\n 1. Vis vægt\n 2. Tara vægt\n 3.skriver ord i veje display\n 4.retunerer til vægt visning\n 5. plads til 30 karakterer\n 6.Skriver INDTAST NR " +
                 "Afventer indtastning (her 123)som så retunerer: RM20 A ”123” crlf \n");
         int valg = sc.nextInt();
-        if(valg==1){v.metoder(v.commandS());}
-        else if(valg==2){v.metoder(v.commandT());}
-        else if(valg==3){v.metoder(v.commandD(output()));}
-        else if(valg==4){v.metoder(v.commandDW());}
-        else if(valg==5){v.metoder(v.commandP111(output()));}
-        else if(valg==6){v.metoder(v.commandRM20(output(), output()));}
+        if(valg==1){v.callWeight(v.commandS());}
+        else if(valg==2){v.callWeight(v.commandT());}
+        else if(valg==3){v.callWeight(v.commandD(output()));}
+        else if(valg==4){v.callWeight(v.commandDW());}
+        else if(valg==5){v.callWeight(v.commandP111(output()));}
+        else if(valg==6){v.callWeight(v.commandRM20(output(), output()));}
     }
 
 
@@ -36,7 +35,7 @@ public class TUI {
     }
     */
 
-    public void afvejningsProcedure() throws IOException {
+    public void testProcedure() throws IOException {
         String userInput;
         // Trin 1: Vægten beder om, at der indtastes operatørnummer
         // Trin 2: Operatøren indtaster sit brugernummer (område 11-99)
@@ -46,7 +45,7 @@ public class TUI {
             } while (!inputEquals(userInput, 12));
 
             // Trin 3 & 4: Operatørens navn findes i databasen og vises på vægten
-            userInput = v.commandRM20(bruger.getNavn(), "Er dette dit navn? y/n");
+            userInput = v.commandRM20(user.getName(), "Er dette dit navn? y/n");
         } while(!inputEquals(userInput, "Y"));
 
         // Trin 5 & 6: Vægten beder om, at der indtastes batch nummer (område 1000-9999)
