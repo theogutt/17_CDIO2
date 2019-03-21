@@ -21,22 +21,27 @@ public class VægtController {
         System.out.println(in);
     }
 
+    // Viser vægt i kg
     public String commandS(){
         return "S crlf";
     }
 
+    // Tarerer vægten
     public String commandT(){
         return "T crlf";
     }
 
+    // Skriver "output" i displayet
     public String commandD(String output){
         return "D " + "\"" + output + "\"" + " crlf";
     }
 
+    // Viser vægten igen (bruges efter der er skrevet et output i displayet)
     public String commandDW(){
         return "DW crlf";
     }
 
+    // Skriver "output" i et andet display
     public String commandP111(String output){
         if (output.length() <= 30)
             return "P111 " + "\"" + output + "\"" + " crlf";
@@ -44,6 +49,7 @@ public class VægtController {
             return "FEJL, for langt output";
     }
 
+    // Skriver "output" og "output2" i to displays og venter på inputs
     public String commandRM20(String output, String output2){
         return "RM20 8" + "\"" + " " + output + "" + " \"\"" + " \"&OK" + "crlf";
     }
